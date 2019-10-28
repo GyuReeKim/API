@@ -1,0 +1,9 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'static/css/bootstrap.css' %}">
+<script src="{% static 'js/bootstrap.js' %}"></script>
+
+<form action="" method="post">
+  {% csrf_token %}
+  {{form}}
+  <input type="submit">
+</form>

@@ -3,6 +3,11 @@ from .models import Music, Artist, Comment
 from rest_framework.decorators import api_view
 from .serializers import MusicSerializer, ArtistSerializer, ArtistDetailSerializer, CommentSerializer
 from rest_framework.response import Response
+from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from django.views.decorators.http import require_POST, require_http_methods
+@require_http_methods(['GET', 'POST'])
+@require_POST
 
 # Create your views here.
 
@@ -55,3 +60,10 @@ def comment_detail(request, id):
     else:
         comment.delete()
         return Response({'message':"삭제되었습니다!!!"})
+
+def signup(request):
+    form = UserCreationForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'signup.html', context)
